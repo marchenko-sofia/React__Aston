@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.postList {
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.postCard {
+    text-align: center;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0.5rem;
+}
