@@ -1,7 +1,8 @@
+import styles from '../LayoutFooter/footer.module.css'
 
 function Footer() {
     return (
-        <footer className='footer'>Homework_1 by Marchenko S</footer>
+        <footer className={styles.footer}>Homeworks by Marchenko S 2025</footer>
     );
 };
 

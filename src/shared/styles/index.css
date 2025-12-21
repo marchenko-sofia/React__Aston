@@ -1,3 +1,9 @@
-body {
+body.light-theme {
+    color: black;
     background-color: rgba(127, 202, 255, 0.781);
+}
+
+body.dark-theme {
+    color: antiquewhite;
+    background-color: rgba(0, 84, 145, 0.877);
 }

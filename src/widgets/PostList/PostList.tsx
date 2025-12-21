@@ -1,15 +1,18 @@
+import styles from '../PostList/postList.module.css'
+import style from "../../entities/post/ui/postCard.module.css"
 import PostCard from '../../entities/post/ui/PostCard';
 
 export type PostType = {
     id: number,
     title: string,
     content: string,
+    comment: string,
 };
 
 const posts: PostType[] = [
-    { id: 1, title: 'Первый пост', content: 'Моя первая домашка' },
-    { id: 2, title: 'Второй пост', content: 'Было достаточно тяжело' },
-    { id: 3, title: 'Третий пост', content: 'Но я не отчаялась' },
+    { id: 1, title: 'Первый пост', content: 'Моя первая домашка', comment: 'Вау' },
+    { id: 2, title: 'Второй пост', content: 'Вторая домашка', comment: 'Круто' },
+    { id: 3, title: 'Третий пост', content: 'Я (не) отчаялась', comment: 'Респект' },
 ];
 
 // Получение постов с сервера
@@ -19,9 +22,9 @@ const posts: PostType[] = [
 
 function PostList() {
     return (
-        <ul className='postList'>
+        <ul className={styles.postList}>
             {posts.map((post: PostType) => (
-                <li key={post.id}>
+                <li key={post.id} className={style.postCard}>
                     <PostCard post={post} />
                 </li>
             ))}
