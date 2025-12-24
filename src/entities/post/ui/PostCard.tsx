@@ -2,10 +2,10 @@ import React from "react";
 
 interface IProps {
     post: {
+        userId: number,
         id: number,
         title: string,
-        content: string,
-        comment: string,
+        body: string,
     };
 }
 
@@ -14,8 +14,7 @@ function PostCard({ post }: IProps) {
     return (
         <React.Fragment>
             <h3>{post.title}</h3>
-            <p>{post.content}</p>
-            <p>Комментарии: {post.comment}</p>
+            <p>{post.body}</p>
         </React.Fragment>
     );
 };

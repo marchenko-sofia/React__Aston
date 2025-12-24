@@ -20,6 +20,10 @@ function MainLayout() {
     );
 };
 
+// // data={{
+//                     posts: [],
+//                     comments: []
+//                 }}
 
 export default MainLayout
 
