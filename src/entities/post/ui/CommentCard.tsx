@@ -1,3 +1,6 @@
+import style from "../ui/commentCard.module.css"
+
+
 interface IProps {
     comment: {
         postId: number,
@@ -12,8 +15,7 @@ function CommentCard({ comment }: IProps) {
 
     return (
         <div className="comment">
-            <p className="comment-name">{comment.name}</p>
-            <p className="comment-text">{comment.body}</p>
+            <p className="comment-content"><span className={style.commentName}>{comment.name}</span>: {comment.body}</p>
         </div>
     );
 };

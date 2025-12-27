@@ -18,17 +18,11 @@ type CommentType = {
     body: string,
 };
 
-// const posts: PostType[] = [
-//     { id: 1, title: 'Первый пост', content: 'Моя первая домашка', comment: 'Вау' },
-//     { id: 2, title: 'Второй пост', content: 'Вторая домашка', comment: 'Круто' },
-//     { id: 3, title: 'Третий пост', content: 'Я (не) отчаялась', comment: 'Респект' },
-// ];
-
 async function fetchData() {
-    const responsePosts = await fetch('https://jsonplaceholder.typicode.com/posts');
+    const responsePosts = await fetch('https://posts-a4627-default-rtdb.firebaseio.com/posts.json');
     const posts = await responsePosts.json();
 
-    const responseComments = await fetch('https://jsonplaceholder.typicode.com/comments');
+    const responseComments = await fetch('https://comments-2efbd-default-rtdb.firebaseio.com/comments.json');
     const comments = await responseComments.json();
 
     return { posts, comments };
@@ -66,7 +60,6 @@ function PostList() {
                         .map((comment: CommentType) => <CommentCard key={comment.id} comment={comment} />)
                     }
                 </li>
-
             ))}
         </ul>
     );

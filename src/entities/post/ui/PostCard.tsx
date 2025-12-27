@@ -13,7 +13,7 @@ function PostCard({ post }: IProps) {
 
     return (
         <React.Fragment>
-            <h3>{post.title}</h3>
+            <h3 className="post-title">{post.title}</h3>
             <p>{post.body}</p>
         </React.Fragment>
     );
