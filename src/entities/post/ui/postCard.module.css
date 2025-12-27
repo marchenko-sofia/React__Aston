@@ -1,3 +1,9 @@
 .postCard {
+    padding-left: 5px;
+    padding-right: 5px;
+    max-width: 20%;
+}
+
+.post-title {
     text-align: center;
 }

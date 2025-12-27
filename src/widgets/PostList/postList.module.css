@@ -1,6 +1,8 @@
 .postList {
     padding: 0 2rem;
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     list-style-type: none;
 }
