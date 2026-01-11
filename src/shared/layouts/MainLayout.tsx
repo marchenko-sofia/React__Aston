@@ -1,8 +1,8 @@
 import Header from '../../widgets/LayoutHeader/Header';
-import { fetchDataPost } from '../../widgets/PostList/PostList';
 import Footer from '../../widgets/LayoutFooter/Footer';
 import ThemeProvider from '../lib/theme/ThemeProvider';
-import PostListwithLoading from '../../widgets/PostList/PostList';
+
+import { Outlet } from 'react-router-dom';
 
 
 function MainLayout() {
@@ -11,8 +11,7 @@ function MainLayout() {
             <Header />
 
             <main className='container'>
-                <PostListwithLoading fetchDataPost={fetchDataPost} />
-                {/* <PostList fetchDataPost={fetchDataPost} /> */}
+                <Outlet />
             </main>
 
             <ThemeProvider />

@@ -1,14 +1,12 @@
-import React, { type FC, useState, useEffect } from 'react';
+import React, { type FC } from 'react';
 import type { PostType } from '../../../widgets/PostList/PostList';
+import usePosts from '../../../features/PostList/model/hooks/usePosts';
 import style from '../hoc/styleLoader.module.css';
 
 // Интерфейс пропсов для HOC
 export interface IWithLoadingProps {
     children?: React.ReactNode;
-    loader?: React.ReactNode; // 
-    fetchDataPost(): Promise<{
-        posts: PostType[];
-    }>; // Метод для получения данных
+    posts: PostType[];
 }
 
 // Общий тип для оборачиваемых компонентов
@@ -18,18 +16,13 @@ type LoadedComponent = FC<IWithLoadingProps>;
 const withLoading = (WrappedComponent: LoadedComponent): LoadedComponent => {
     return (
         (props: IWithLoadingProps) => {
-            const { loader = <div className={style.loader}>...Загрузка...</div>, fetchDataPost } = props;
-            const [loading, setLoading] = useState(true);
+            const { posts, isLoading } = usePosts();
 
-            useEffect(() => {
-                const loadData = async () => {
-                    await fetchDataPost();
-                    setLoading(false);
-                };
-                loadData();
-            }, [fetchDataPost]);
+            if (isLoading) {
+                return <p className={style.loader}>...Загрузка...</p>;
+            }
 
-            return loading ? loader : <WrappedComponent {...props} />;
+            return <WrappedComponent {...props} posts={posts} />;
         }) as LoadedComponent;
 };
 

@@ -1,4 +1,4 @@
-import style from "../ui/commentCard.module.css"
+import style from "../ui/commentCard.module.css";
 
 
 export interface IPropsCommemt {
@@ -12,7 +12,6 @@ export interface IPropsCommemt {
 }
 
 function CommentCard({ comment }: IPropsCommemt) {
-
     return (
         <div className="comment">
             <p className={style.commentContent}><span className={style.commentName}>{comment.name}</span>: {comment.body}</p>

@@ -30,6 +30,29 @@ function Modal({ isOpen, onClose }: ModalProps) {
     );
 };
 
+Modal.Header = () => {
+    return (
+        <h2>О проекте</h2>
+    )
+};
+
+Modal.Body = () => {
+    return (
+        <p>Приложение для просмотра постов и комментариев, основанное на публичном API JSONPlaceholder</p>
+    )
+};
+
+Modal.Footer = ({ onClose }: ModalProps) => {
+    return (
+        <button onClick={onClose}>Закрыть</button>
+    )
+};
+
+
+export default Modal
+
+
+/*Попытка другой реализации*/
 // const modalContext = createContext();
 
 // function Modal(id = 'modal-root') {
@@ -74,23 +97,3 @@ function Modal({ isOpen, onClose }: ModalProps) {
 //     )
 // };
 
-Modal.Header = () => {
-    return (
-        <h2>О проекте</h2>
-    )
-};
-
-Modal.Body = () => {
-    return (
-        <p>Приложение для просмотра постов и комментариев, основанное на публичном API JSONPlaceholder</p>
-    )
-};
-
-Modal.Footer = ({ onClose }: ModalProps) => {
-    return (
-        <button onClick={onClose}>Закрыть</button>
-    )
-};
-
-
-export default Modal
