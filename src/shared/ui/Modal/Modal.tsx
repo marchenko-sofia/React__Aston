@@ -1,6 +1,6 @@
 import { createPortal } from 'react-dom';
 import styles from "../Modal/modal.module.css";
-// import { useEffect, useRef } from 'react';
+// import { createContext, useEffect, useRef, useState } from 'react';
 
 interface ModalProps {
     isOpen: boolean;
@@ -16,30 +16,84 @@ function Modal({ isOpen, onClose }: ModalProps) {
         document.body.appendChild(modalRoot);
     }
 
-    // Не получилось так реализовать - выводил ошибку в 36 строчке: "rootRef.current"
-    // const rootRef = useRef<HTMLElement | null>(null);
-    // useEffect(() => {
-    //     let container = document.getElementById(id);
-    //     if (!container) {
-    //         container = document.createElement('div');
-    //         container.id = id;
-    //         document.body.appendChild(container);
-    //     }
-    //     rootRef.current = container;
-    // }, [id]);
-
     if (!isOpen) return null;
 
     return createPortal(
         <div className={styles.overlay}>
             <div className={styles.modalContent}>
-                <h2>О проекте</h2>
-                <p>Приложение для просмотра постов и комментариев, основанное на публичном API JSONPlaceholder</p>
-                <button onClick={onClose}>Закрыть</button>
+                <Modal.Header />
+                <Modal.Body />
+                <Modal.Footer isOpen={true} onClose={onClose} />
             </div>
         </div>,
         modalRoot
     );
 };
 
+Modal.Header = () => {
+    return (
+        <h2>О проекте</h2>
+    )
+};
+
+Modal.Body = () => {
+    return (
+        <p>Приложение для просмотра постов и комментариев, основанное на публичном API JSONPlaceholder</p>
+    )
+};
+
+Modal.Footer = ({ onClose }: ModalProps) => {
+    return (
+        <button onClick={onClose}>Закрыть</button>
+    )
+};
+
+
 export default Modal
+
+
+/*Попытка другой реализации*/
+// const modalContext = createContext();
+
+// function Modal(id = 'modal-root') {
+
+//     const rootRef = useRef<HTMLElement | null>(null);
+//     useEffect(() => {
+//         let container = document.getElementById(id);
+//         if (!container) {
+//             container = document.createElement('div');
+//             container.id = id;
+//             document.body.appendChild(container);
+//         }
+//         rootRef.current = container;
+//     }, [id]);
+
+//     const [showModal, setShowModal] = useState(false);
+//     const toggle = () => { setShowModal((prev) => !prev) };
+
+//     const modalPortal = ({ isOpen, onClose }: ModalProps) => {
+//         return ({isOpen && rootRef.current ? createPortal(
+//             <div className={styles.overlay}>
+//                 <div className={styles.modalContent}>
+//                     <Modal.Header />
+//                     <Modal.Body />
+//                     <Modal.Footer isOpen={showModal} onClose={closeModal} />
+//                 </div>
+//             </div>,
+//             rootRef.current
+//         ) : null};
+//        )
+//     }
+
+//     return modalPortal;
+// }
+
+// Modal.Trigger = () => {
+//     const openModal = () => setShowModal(true);
+//     return (
+//         <nav>
+//             <button onClick={openModal}>О проекте</button>
+//         </nav>
+//     )
+// };
+

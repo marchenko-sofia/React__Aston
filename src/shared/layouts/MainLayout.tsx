@@ -1,7 +1,9 @@
-import Header from '../../widgets/LayoutHeader/Header'
-import PostList from '../../widgets/PostList/PostList'
-import Footer from '../../widgets/LayoutFooter/Footer'
+import Header from '../../widgets/LayoutHeader/Header';
+import Footer from '../../widgets/LayoutFooter/Footer';
 import ThemeProvider from '../lib/theme/ThemeProvider';
+
+import { Outlet } from 'react-router-dom';
+
 
 function MainLayout() {
     return (
@@ -9,7 +11,7 @@ function MainLayout() {
             <Header />
 
             <main className='container'>
-                <PostList />
+                <Outlet />
             </main>
 
             <ThemeProvider />
@@ -19,11 +21,6 @@ function MainLayout() {
         </>
     );
 };
-
-// // data={{
-//                     posts: [],
-//                     comments: []
-//                 }}
 
 export default MainLayout
 

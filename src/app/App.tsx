@@ -1,14 +1,10 @@
-import MainLayout from "../shared/layouts/MainLayout"
-// import '../App.css'
+import { RouterProvider } from "react-router-dom";
+import { router } from "./providers/router/router";
+
 
 function App() {
-
   return (
-    <>
-      <div className="App">
-        <MainLayout />
-      </div>
-    </>
+    <RouterProvider router={router} />
   );
 };
 
