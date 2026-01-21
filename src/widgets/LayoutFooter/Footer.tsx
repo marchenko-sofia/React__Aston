@@ -1,4 +1,4 @@
-import styles from '../LayoutFooter/footer.module.css'
+import styles from '../LayoutFooter/footer.module.css';
 
 function Footer() {
     return (

@@ -1,4 +1,4 @@
-import styles from "../LayoutHeader/header.module.css"
+import styles from "../LayoutHeader/header.module.css";
 import Modal from '../../shared/ui/Modal/Modal';
 import { useState } from 'react';
 

@@ -1,7 +1,7 @@
-import style from "../ui/commentCard.module.css"
+import style from "../ui/commentCard.module.css";
 
 
-interface IProps {
+export interface IPropsCommemt {
     comment: {
         postId: number,
         id: number,
@@ -11,11 +11,10 @@ interface IProps {
     }
 }
 
-function CommentCard({ comment }: IProps) {
-
+function CommentCard({ comment }: IPropsCommemt) {
     return (
         <div className="comment">
-            <p className="comment-content"><span className={style.commentName}>{comment.name}</span>: {comment.body}</p>
+            <p className={style.commentContent}><span className={style.commentName}>{comment.name}</span>: {comment.body}</p>
         </div>
     );
 };

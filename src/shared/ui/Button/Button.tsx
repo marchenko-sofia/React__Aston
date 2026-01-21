@@ -13,4 +13,4 @@ function Button({ children, onClick }: ButtonProps) {
 }
 
 
-export default Button;
+export default Button
