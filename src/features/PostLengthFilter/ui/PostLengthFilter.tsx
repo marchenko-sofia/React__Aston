@@ -32,7 +32,7 @@ const PostLengthFilter = (data: PostLengthFilterProps) => {
                 placeholder="Введите максимальную длину заголовка" />
 
             <ul className={styles.postList}>
-                {filteredData.map((post: PostType) => (
+                {data && filteredData.map((post: PostType) => (
                     <li key={post.id} className={styleLi.postCard}>
                         <PostCard post={post} />
                         <CommentList post={post} />

@@ -14,8 +14,8 @@ const UserPage = () => {
                 placeholder="Введите id пользователя" />
             <UserTabs userId={userId} />
         </>
-
     );
-}
+};
+
 export default UserPage
 

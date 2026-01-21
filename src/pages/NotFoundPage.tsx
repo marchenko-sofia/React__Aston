@@ -7,6 +7,6 @@ const NotFoundPage = () => {
             <NavButton path={"/"} >Вернуться на главную страницу</NavButton>
         </>
     )
-}
+};
 
 export default NotFoundPage

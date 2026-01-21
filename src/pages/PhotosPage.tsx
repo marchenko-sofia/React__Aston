@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NavButton from "../shared/ui/NavButton/NavButton";
 import style from "../shared/lib/hoc/styleLoader.module.css";
-
+import { albumsApi } from "../entities/[entity]/api/albumsApi";
 
 type PhotoType = {
     albumId: number,
@@ -12,60 +11,20 @@ type PhotoType = {
     thumbnailUrl: string,
 };
 
-type PhotosDataProps = {
-    photos: PhotoType[];
-};
-
 const PhotosPage = () => {
     const params = useParams();
-    const albumId = params.id;
-    const [data, setData] = useState<PhotosDataProps>({ photos: [] });
-    const [isLoading, setIsLoading] = useState(true);
+    const albumId = params.id as string;
+    const { data: photos, isLoading, error } = albumsApi.useGetPhotosByAlbumIdQuery(albumId);
 
-    useEffect(() => {
-        let ignore = false;
-        const getPhotosAlbum = async () => {
-            try {
-                const responsePhotos = await fetch("https://photos-13f08-default-rtdb.firebaseio.com/photos.json");
-                const photos = await responsePhotos.json();
-                const photosUser = albumId
-                    ? photos.filter((photo: PhotoType) => photo.albumId === parseInt(albumId))
-                    : [];
-                if (!ignore) {
-                    setData({ photos: photosUser });
-                }
-            } catch (error) {
-                console.error('Ошибка при получении фотографий альбома:', error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        getPhotosAlbum();
-        return () => {
-            ignore = true;
-        }
-    }, [albumId]);
-
-    if (isLoading) {
-        return <p className={style.loader}>...Загрузка...</p>;
-    }
-
-    if (albumId && !data.photos.length) {
-        return (
-            <>
-                <p>Фотографий нет</p>
-                <NavButton path={"/albums"}>Вернуться назад</NavButton>
-                <NavButton path={"/"} >Вернуться на главную страницу</NavButton>
-            </>
-        )
-    }
-    else
-        return (
-            <>
+    return (
+        <>
+            {isLoading && <p className={style.loader}>...Загрузка...</p>}
+            {error && <p>Упс!<sub>I Did It Again</sub> Произошла ошибка</p>}
+            {photos &&
                 <div>
                     <h2>Фотографии альбома {albumId}</h2>
                     <ul>
-                        {data.photos.map((photo: PhotoType) => (
+                        {photos.map((photo: PhotoType) => (
                             <li key={photo.id}>
                                 {photo.title}{' '}
                                 <img src={photo.url} alt={photo.id.toString()}></img>
@@ -73,10 +32,11 @@ const PhotosPage = () => {
                         ))}
                     </ul>
                 </div>
-                <NavButton path={"/albums"}>Вернуться назад</NavButton>
-                <NavButton path={"/"} >Вернуться на главную страницу</NavButton>
-            </>
-        );
+            }
+            <NavButton path={"/user"}>Вернуться назад</NavButton>
+            <NavButton path={"/"} >Вернуться на главную страницу</NavButton>
+        </>
+    );
 }
 
 export default PhotosPage

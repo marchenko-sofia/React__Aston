@@ -1,5 +1,4 @@
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
-import withLoading from '../../shared/lib/hoc/withLoading';
 
 export type PostType = {
     userId: number,
@@ -8,17 +7,11 @@ export type PostType = {
     body: string,
 };
 
-
 function PostList({ posts }: { posts: PostType[] }) {
-
-    if (!posts.length) return null;
 
     return (
         <PostLengthFilter posts={posts} />
     );
 };
 
-// Оборачиваем в HOC
-const PostListwithLoading = withLoading(PostList);
-
-export default PostListwithLoading
+export default PostList
