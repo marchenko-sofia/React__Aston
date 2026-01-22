@@ -1,6 +1,6 @@
 import React from "react";
 
-interface IProps {
+export type PostCardProps = {
     post: {
         userId: number,
         id: number,
@@ -9,8 +9,7 @@ interface IProps {
     };
 }
 
-function PostCard({ post }: IProps) {
-
+function PostCard({ post }: PostCardProps) {
     return (
         <React.Fragment>
             <h3 className="post-title">{post.title}</h3>

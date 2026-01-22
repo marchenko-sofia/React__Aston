@@ -1,0 +1,10 @@
+div>h3 {
+    text-align: center;
+}
+
+.navList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    list-style-type: none;
+}
