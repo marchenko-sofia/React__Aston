@@ -2,13 +2,7 @@ import { useParams } from "react-router-dom";
 import NavButton from "../shared/ui/NavButton/NavButton";
 import style from "../shared/lib/hoc/styleLoader.module.css";
 import { todosApi } from "../entities/[entity]/api/todosApi";
-
-type TodoType = {
-    userId: number,
-    id: number,
-    title: string,
-    completed: boolean,
-};
+import ItemList from "../shared/ui/ItemList/ItemList";
 
 const UserTodosPage = () => {
     const params = useParams();
@@ -23,12 +17,9 @@ const UserTodosPage = () => {
             {todos &&
                 <div>
                     <h2>Задачи пользователя {userId}</h2>
-                    <ul>
-                        {todos.map((todo: TodoType) => (
-                            <li key={todo.id}>
-                                {todo.title}:{' '}{todo.completed ? <span>выполнено</span> : <span>не выполнено</span>}</li>
-                        ))}
-                    </ul>
+                    <ItemList items={todos} renderItem={
+                        (todo) => <>{todo.title}:{' '}{todo.completed ? <span>выполнено</span> : <span>не выполнено</span>}</>
+                    } />
                 </div>
             }
 

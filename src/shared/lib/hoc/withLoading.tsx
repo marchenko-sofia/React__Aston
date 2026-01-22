@@ -1,21 +1,20 @@
-import React, { type FC } from 'react';
-import type { PostType } from '../../../widgets/PostList/PostList';
+import { type FC, type PropsWithChildren } from 'react';
 import usePosts from '../../../features/PostList/model/hooks/usePosts';
 import style from '../hoc/styleLoader.module.css';
+import type { PostType } from '../../../entities/[entity]/model/types';
 
 // Интерфейс пропсов для HOC
-export interface IWithLoadingProps {
-    children?: React.ReactNode;
+export type withLoadingProps = {
     posts: PostType[];
 }
 
 // Общий тип для оборачиваемых компонентов
-type LoadedComponent = FC<IWithLoadingProps>;
+type LoadedComponent = FC<withLoadingProps>;
 
 // Основная функция HOC
 const withLoading = (WrappedComponent: LoadedComponent): LoadedComponent => {
     return (
-        (props: IWithLoadingProps) => {
+        (props: PropsWithChildren<withLoadingProps>) => {
             const { posts, isLoading } = usePosts();
 
             if (isLoading) {

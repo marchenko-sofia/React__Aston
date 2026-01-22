@@ -1,5 +1,5 @@
 import NavButton from "../shared/ui/NavButton/NavButton";
-import { useState } from "react";
+import { useState, type ChangeEvent } from "react";
 import styleInput from "../features/PostLengthFilter/ui/styleInput.module.css";
 import style from "../shared/lib/hoc/styleLoader.module.css";
 import PostList from "../widgets/PostList/PostList";
@@ -16,7 +16,7 @@ const AllPostPage = () => {
             <input type='text' id='searchPost'
                 className={styleInput.input}
                 value={postId}
-                onChange={(event) => setPostId(event.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setPostId(event.target.value)}
                 placeholder="Введите номер поста" />
             <NavButton path={`/posts/${postId}`}>Посмотреть пост {postId}</NavButton>
             <NavButton path={"/"} >Вернуться на главную страницу</NavButton>

@@ -1,11 +1,10 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ChangeEvent } from 'react';
 import style from './styleInput.module.css';
-import styles from '../../../widgets/PostList/postList.module.css';
-import styleLi from '../../../entities/post/ui/postCard.module.css';
 import filterByLength from '../lib/filterByLength';
-import type { PostType } from '../../../widgets/PostList/PostList';
 import PostCard from '../../../entities/post/ui/PostCard';
 import CommentList from '../../../widgets/CommentList/ui/CommentList';
+import type { PostType } from '../../../entities/[entity]/model/types';
+import ItemList from '../../../shared/ui/ItemList/ItemList';
 
 export type PostLengthFilterProps = {
     posts: PostType[];
@@ -28,19 +27,18 @@ const PostLengthFilter = (data: PostLengthFilterProps) => {
             <input type='text' id='filter'
                 className={style.input}
                 value={maxLength}
-                onChange={(event) => setMaxLength(event.target.value)}
+                onChange={(event: ChangeEvent<HTMLInputElement>) => setMaxLength(event.target.value)}
                 placeholder="Введите максимальную длину заголовка" />
 
-            <ul className={styles.postList}>
-                {data && filteredData.map((post: PostType) => (
-                    <li key={post.id} className={styleLi.postCard}>
-                        <PostCard post={post} />
-                        <CommentList post={post} />
-                    </li>
-                ))}
-            </ul>
+            <ItemList items={filteredData} renderItem={(post) =>
+                <>
+                    <PostCard post={post} />
+                    <CommentList post={post} />
+                </>} />
         </>
     )
 }
 
 export default PostLengthFilter
+
+

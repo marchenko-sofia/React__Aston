@@ -4,8 +4,8 @@ import PostCard from "../entities/post/ui/PostCard";
 import CommentList from "../widgets/CommentList/ui/CommentList";
 import styleLi from '../entities/post/ui/postCard.module.css';
 import style from "../shared/lib/hoc/styleLoader.module.css";
-
 import { postsApi } from "../entities/[entity]/api/postsApi";
+
 
 const SinglePostPage = () => {
     const params = useParams();
@@ -28,7 +28,6 @@ const SinglePostPage = () => {
                     </ul>
                 </div>
             }
-
             <NavButton path={"/posts"}>Вернуться назад</NavButton>
             <NavButton path={"/"} >Вернуться на главную страницу</NavButton>
         </>

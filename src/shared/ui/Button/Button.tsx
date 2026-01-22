@@ -1,12 +1,12 @@
-import type { ReactNode } from 'react';
+import type { PropsWithChildren } from 'react';
 
 // Шаблон кнопки "по нажатию"
-interface ButtonProps {
-    children?: ReactNode;
+type ButtonProps = {
     onClick?: () => void;
 }
 
-function Button({ children, onClick }: ButtonProps) {
+function Button(props: PropsWithChildren<ButtonProps>) {
+    const { onClick, children } = props;
     return (
         <button onClick={onClick}>{children}</button>
     );

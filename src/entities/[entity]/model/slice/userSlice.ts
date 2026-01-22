@@ -1,16 +1,5 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
-
-
-type UserType = {
-    id: number,
-    name: string,
-    username: string,
-    email: string,
-    address: object,
-    phone: string,
-    website: string,
-    company: object,
-}
+import type { UserType } from "../types";
 
 const usersAdapter = createEntityAdapter<UserType>();
 

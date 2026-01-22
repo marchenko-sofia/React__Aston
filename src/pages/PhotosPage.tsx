@@ -2,14 +2,7 @@ import { useParams } from "react-router-dom";
 import NavButton from "../shared/ui/NavButton/NavButton";
 import style from "../shared/lib/hoc/styleLoader.module.css";
 import { albumsApi } from "../entities/[entity]/api/albumsApi";
-
-type PhotoType = {
-    albumId: number,
-    id: number,
-    title: string,
-    url: string,
-    thumbnailUrl: string,
-};
+import ItemList from "../shared/ui/ItemList/ItemList";
 
 const PhotosPage = () => {
     const params = useParams();
@@ -23,14 +16,11 @@ const PhotosPage = () => {
             {photos &&
                 <div>
                     <h2>Фотографии альбома {albumId}</h2>
-                    <ul>
-                        {photos.map((photo: PhotoType) => (
-                            <li key={photo.id}>
-                                {photo.title}{' '}
-                                <img src={photo.url} alt={photo.id.toString()}></img>
-                            </li>
-                        ))}
-                    </ul>
+                    <ItemList items={photos} renderItem={(photo) =>
+                        <>
+                            {photo.title}{' '}
+                            <img src={photo.url} alt={photo.id.toString()}></img>
+                        </>} />
                 </div>
             }
             <NavButton path={"/user"}>Вернуться назад</NavButton>

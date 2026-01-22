@@ -1,11 +1,5 @@
+import type { PostType } from '../../entities/[entity]/model/types';
 import PostLengthFilter from '../../features/PostLengthFilter/ui/PostLengthFilter';
-
-export type PostType = {
-    userId: number,
-    id: number,
-    title: string,
-    body: string,
-};
 
 function PostList({ posts }: { posts: PostType[] }) {
 

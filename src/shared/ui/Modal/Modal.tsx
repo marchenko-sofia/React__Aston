@@ -1,13 +1,14 @@
 import { createPortal } from 'react-dom';
 import styles from "../Modal/modal.module.css";
-// import { createContext, useEffect, useRef, useState } from 'react';
 
-interface ModalProps {
+type ModalProps = {
     isOpen: boolean;
     onClose: () => void;
 }
 
-function Modal({ isOpen, onClose }: ModalProps) {
+function Modal(props: ModalProps) {
+    const { isOpen, onClose } = props;
+
     let modalRoot = document.getElementById('modal-root');
 
     if (!modalRoot) {
@@ -48,52 +49,4 @@ Modal.Footer = ({ onClose }: ModalProps) => {
     )
 };
 
-
 export default Modal
-
-
-/*Попытка другой реализации*/
-// const modalContext = createContext();
-
-// function Modal(id = 'modal-root') {
-
-//     const rootRef = useRef<HTMLElement | null>(null);
-//     useEffect(() => {
-//         let container = document.getElementById(id);
-//         if (!container) {
-//             container = document.createElement('div');
-//             container.id = id;
-//             document.body.appendChild(container);
-//         }
-//         rootRef.current = container;
-//     }, [id]);
-
-//     const [showModal, setShowModal] = useState(false);
-//     const toggle = () => { setShowModal((prev) => !prev) };
-
-//     const modalPortal = ({ isOpen, onClose }: ModalProps) => {
-//         return ({isOpen && rootRef.current ? createPortal(
-//             <div className={styles.overlay}>
-//                 <div className={styles.modalContent}>
-//                     <Modal.Header />
-//                     <Modal.Body />
-//                     <Modal.Footer isOpen={showModal} onClose={closeModal} />
-//                 </div>
-//             </div>,
-//             rootRef.current
-//         ) : null};
-//        )
-//     }
-
-//     return modalPortal;
-// }
-
-// Modal.Trigger = () => {
-//     const openModal = () => setShowModal(true);
-//     return (
-//         <nav>
-//             <button onClick={openModal}>О проекте</button>
-//         </nav>
-//     )
-// };
-

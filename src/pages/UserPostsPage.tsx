@@ -1,12 +1,10 @@
 import { useParams } from "react-router-dom";
 import NavButton from "../shared/ui/NavButton/NavButton";
-import type { PostType } from "../widgets/PostList/PostList";
 import PostCard from "../entities/post/ui/PostCard";
 import CommentList from "../widgets/CommentList/ui/CommentList";
-import styleLi from '../entities/post/ui/postCard.module.css';
 import style from "../shared/lib/hoc/styleLoader.module.css";
 import { postsApi } from "../entities/[entity]/api/postsApi";
-
+import ItemList from "../shared/ui/ItemList/ItemList";
 
 const UserPostsPage = () => {
     const params = useParams();
@@ -21,14 +19,12 @@ const UserPostsPage = () => {
             {posts &&
                 <div>
                     <h2>Посты пользователя {userId}</h2>
-                    <ul>
-                        {posts.map((post: PostType) => (
-                            <li key={post.id} className={styleLi.postCard}>
-                                <PostCard post={post} />
-                                <CommentList post={post} />
-                            </li>
-                        ))}
-                    </ul>
+                    <ItemList items={posts} renderItem={
+                        (post) => <>
+                            <PostCard post={post} />
+                            <CommentList post={post} />
+                        </>
+                    } />
                 </div>
             }
             <NavButton path={"/user"}>Вернуться назад</NavButton>

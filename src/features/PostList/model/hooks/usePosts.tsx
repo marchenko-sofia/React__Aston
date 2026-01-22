@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { PostType } from "../../../../widgets/PostList/PostList";
+import type { PostType } from "../../../../entities/[entity]/model/types";
 
 const usePosts = () => {
     const [posts, setPosts] = useState<PostType[]>([]);
